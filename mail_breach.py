@@ -15,5 +15,6 @@ if __name__ == "__main__":
     for account in account_list:
         if account == "":
             continue
+        account = quote(account)
         resp = requests.get('https://haveibeenpwned.com/api/v3/breachedaccount/{}'.format(account),headers=headers).json()
         print(resp)
