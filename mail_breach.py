@@ -2,6 +2,7 @@ import requests
 from urllib.parse import quote
 import csv
 import os
+import datetime
 
 
 api_key = ''  # place api key
@@ -61,8 +62,13 @@ if __name__ == "__main__":
             domain = info.get('Domain', '')
             names.append(name)
             domains.append(domain)
-            if last_date is None or last_date == '':
+            if last_date is None:
                 last_date = info.get('BreachDate', '')
+            else:
+                this_date = datetime.datetime.strptime(info.get('BreachDate', last_date),"%Y-%m-%d")
+                prev_date = datetime.datetime.strptime(last_date,"%Y-%m-%d")
+                if this_date > prev_date:
+                    last_date = info.get('BreachDate', last_date)
         name = ",".join(names)
         domain = ",".join(domains)
         dataset = []
