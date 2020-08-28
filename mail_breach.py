@@ -3,11 +3,12 @@ from urllib.parse import quote
 import csv
 import os
 import datetime
+import time
 
 
 api_key = ''  # place api key
 user_agent = ''  # user agent to be placed
-output_file = "out.csv"  # output file to save data
+output_file = "out_{}.csv".format(int(round(time.time())))  # output file to save data
 account_list = open('accounts.txt', mode='r',
                     encoding='utf-8').read().split('\n')
 
