@@ -82,3 +82,4 @@ if __name__ == "__main__":
             print(data)
         print("="*30)
         saveRecords(dataset)
+        time.sleep(2)
